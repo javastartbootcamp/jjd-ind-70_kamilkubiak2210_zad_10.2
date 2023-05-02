@@ -1,6 +1,6 @@
 package pl.javastart.task;
 
-public class CardPhoneContract extends Phone{
+public class CardPhoneContract extends Phone {
     private final double balance;
     private final double smsCost;
     private final double mmsCost;
@@ -17,16 +17,13 @@ public class CardPhoneContract extends Phone{
         return balance;
     }
 
-
     public double getSmsCost() {
         return smsCost;
     }
 
-
     public double getMmsCost() {
         return mmsCost;
     }
-
 
     public double getOneMinuteTalkCost() {
         return oneMinuteTalkCost;
