@@ -15,9 +15,9 @@ public class Phone {
     private int amountOfMms;
     private double amountOfTalk;
     private static final double PRICE_FOR_ONE_MINUTE_TALK = 0.5;
-    private static final  double PRICE_FOR_ONE_SMS = 0.1;
+    private static final double PRICE_FOR_ONE_SMS = 0.1;
     private static final double PRICE_FOR_ONE_MMS = 0.2;
-    
+
     public Phone(MixPhoneContract mixPhoneContract) {
         amountOfMms = mixPhoneContract.getAmountOfMms();
         amountOfTalk = mixPhoneContract.getAmountOfTalk();
@@ -63,7 +63,7 @@ public class Phone {
         System.out.println("Wysłanych MMSów: " + numberOfMmsSent);
         System.out.println("Liczba sekund rozmowy: " + secondsOfTalk);
     }
-    
+
     public void sendSms() {
         System.out.println();
         if (cardContractInfo) {
@@ -150,7 +150,7 @@ public class Phone {
                 secondsOfTalk += seconds;
                 balance -= timeDifference3;
                 System.out.println("Rozmowa trwała: " + seconds + " sec\n");
-                
+
             }
         }
     }
