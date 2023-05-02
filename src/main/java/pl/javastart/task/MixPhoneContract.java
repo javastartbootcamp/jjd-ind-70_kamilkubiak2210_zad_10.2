@@ -7,7 +7,6 @@ public class MixPhoneContract extends Phone {
     private final int amountOfTalk;
     private final int accountBalance;
 
-
     public MixPhoneContract(int amountOfSms, int amountOfMms, int amountOfTalk, int accountBalance) {
         this.amountOfSms = amountOfSms;
         this.amountOfMms = amountOfMms;
