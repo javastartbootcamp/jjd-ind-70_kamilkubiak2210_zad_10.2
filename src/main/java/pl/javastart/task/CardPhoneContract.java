@@ -1,7 +1,8 @@
 package pl.javastart.task;
 
-public class CardPhoneContract extends Phone {
-    private final double balance;
+public class CardPhoneContract implements Contract {
+    private double balance;
+    private double timeDifference;
     private final double smsCost;
     private final double mmsCost;
     private final double oneMinuteTalkCost;
@@ -13,20 +14,49 @@ public class CardPhoneContract extends Phone {
         this.oneMinuteTalkCost = oneMinuteTalkCost;
     }
 
-    public double getBalance() {
-        return balance;
+    @Override
+    public boolean sendSms() {
+        if (balance >= smsCost) {
+            balance -= smsCost;
+            return true;
+        }
+        return false;
     }
 
-    public double getSmsCost() {
-        return smsCost;
+    @Override
+    public boolean sendMms() {
+        if (balance >= mmsCost) {
+            balance -= mmsCost;
+            return true;
+        }
+        return false;
     }
 
-    public double getMmsCost() {
-        return mmsCost;
+    @Override
+    public boolean call(int seconds) {
+        double priceForGivenSeconds = seconds * oneMinuteTalkCost / 60;
+        if (balance > priceForGivenSeconds) {
+            balance -= priceForGivenSeconds;
+            return true;
+
+        } else if (balance <= priceForGivenSeconds) {
+            double priceDifference = priceForGivenSeconds - balance;
+            double priceLeft = priceForGivenSeconds - priceDifference;
+            timeDifference = (priceLeft * 60 / oneMinuteTalkCost);
+            balance -= priceLeft;
+
+        }
+        return false;
     }
 
-    public double getOneMinuteTalkCost() {
-        return oneMinuteTalkCost;
+    @Override
+    public void printAccount() {
+        System.out.printf("Na koncie zostało: " + " %.2f" + " zł\n", balance);
+    }
+
+    @Override
+    public int timeDiffer() {
+        return (int) timeDifference;
     }
 
 }
