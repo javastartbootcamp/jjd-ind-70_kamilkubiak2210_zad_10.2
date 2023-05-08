@@ -2,11 +2,7 @@ package pl.javastart.task;
 
 public class SubscriptionPhoneContract implements Contract {
 
-    private static double price;
-
-    public static double getPrice() {
-        return price;
-    }
+    private double price;
 
     @Override
     public boolean sendSms() {
@@ -19,18 +15,13 @@ public class SubscriptionPhoneContract implements Contract {
     }
 
     @Override
-    public boolean call(int seconds) {
-
-        return true;
+    public int call(int seconds) {
+        return seconds;
     }
 
     @Override
     public void printAccount() {
-        System.out.println("Abonament: " + SubscriptionPhoneContract.getPrice() + " zł");
+        System.out.println("Abonament: " + price + " zł");
     }
 
-    @Override
-    public int timeDiffer() {
-        return 0;
-    }
 }

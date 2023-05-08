@@ -3,7 +3,8 @@ package pl.javastart.task;
 public class Main {
 
     public static void main(String[] args) {
-        Phone phone = new Phone(new CardPhoneContract(1, 1, .2, .5));
+        Phone phone = new Phone(new MixPhoneContract(1.5, .1, .2, .5,
+                1, 1, 3));
 
         phone.printAccountState();
 
@@ -19,7 +20,7 @@ public class Main {
 
         phone.printAccountState();
 
-        phone.call(60);
+        phone.call(70);
 
         phone.printAccountState();
 
@@ -28,6 +29,10 @@ public class Main {
         phone.printAccountState();
 
         phone.sendMms();
+
+        phone.printAccountState();
+
+        phone.call(130);
 
         phone.printAccountState();
 

@@ -45,17 +45,16 @@ public class Phone {
 
     public void call(int seconds) {
         System.out.println();
-        if (contract.call(seconds)) {
+        int callDuration = contract.call(seconds);
+        if (callDuration == seconds) {
             secondsOfTalk += seconds;
             System.out.println("Rozmowa trwała: " + seconds + " sec\n");
         } else {
-            int timeDifference = contract.timeDiffer();
-            secondsOfTalk += timeDifference;
+            secondsOfTalk += callDuration;
             System.out.println("przerwano połączenie");
-            System.out.println("Rozmowa trwała: " + timeDifference + " sec\n");
+            System.out.println("Rozmowa trwała: " + callDuration + " sec\n");
         }
     }
-
 }
 
 

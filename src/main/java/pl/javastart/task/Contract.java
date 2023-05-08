@@ -5,9 +5,7 @@ public interface Contract {
 
     boolean sendMms();
 
-    boolean call(int seconds);
+    int call(int seconds);
 
     void printAccount();
-
-    int timeDiffer();
 }
