@@ -1,9 +1,11 @@
 package pl.javastart.task;
 
+import pl.javastart.task.contract.MixPhoneContract;
+
 public class Main {
 
     public static void main(String[] args) {
-        Phone phone = new Phone(new MixPhoneContract(1.5, .1, .2, .5,
+        Phone phone = new Phone(new MixPhoneContract(.5, .1, .2, .5,
                 1, 1, 3));
 
         phone.printAccountState();
@@ -32,9 +34,8 @@ public class Main {
 
         phone.printAccountState();
 
-        phone.call(130);
+        phone.call(300);
 
         phone.printAccountState();
-
     }
 }

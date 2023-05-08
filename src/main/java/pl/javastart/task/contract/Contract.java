@@ -1,4 +1,4 @@
-package pl.javastart.task;
+package pl.javastart.task.contract;
 
 public interface Contract {
     boolean sendSms();

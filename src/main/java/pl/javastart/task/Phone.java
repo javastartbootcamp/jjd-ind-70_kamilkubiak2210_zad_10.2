@@ -1,5 +1,7 @@
 package pl.javastart.task;
 
+import pl.javastart.task.contract.Contract;
+
 public class Phone {
     private final Contract contract;
     private int secondsOfTalk;

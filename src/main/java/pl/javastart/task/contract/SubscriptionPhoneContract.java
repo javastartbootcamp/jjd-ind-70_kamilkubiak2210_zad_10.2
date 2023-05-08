@@ -1,8 +1,12 @@
-package pl.javastart.task;
+package pl.javastart.task.contract;
 
 public class SubscriptionPhoneContract implements Contract {
 
-    private double price;
+    double price;
+
+    public SubscriptionPhoneContract(double price) {
+        this.price = price;
+    }
 
     @Override
     public boolean sendSms() {

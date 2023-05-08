@@ -1,10 +1,10 @@
-package pl.javastart.task;
+package pl.javastart.task.contract;
 
 public class MixPhoneContract extends CardPhoneContract {
 
-    private int amountOfSms;
-    private int amountOfMms;
-    private double amountOfTalk;
+    int amountOfSms;
+    int amountOfMms;
+    double amountOfTalk;
 
     public MixPhoneContract(double balance, double smsCost, double mmsCost, double oneMinuteTalkCost, int amountOfSms, int amountOfMms, int amountOfTalk) {
         super(balance, smsCost, mmsCost, oneMinuteTalkCost);
@@ -19,9 +19,8 @@ public class MixPhoneContract extends CardPhoneContract {
             amountOfSms--;
             return true;
         } else {
-            balance -= smsCost;
+            return super.sendSms();
         }
-        return true;
     }
 
     @Override
@@ -30,9 +29,8 @@ public class MixPhoneContract extends CardPhoneContract {
             amountOfMms--;
             return true;
         } else {
-            balance -= mmsCost;
+            return super.sendMms();
         }
-        return true;
     }
 
     @Override
@@ -43,10 +41,9 @@ public class MixPhoneContract extends CardPhoneContract {
             amountOfTalk -= secondsToMin;
             return seconds;
         } else {
-            double secondsDifference = seconds - amountOfTalkInSeconds;
+            balance += amountOfTalk * 0.5;
             amountOfTalk -= amountOfTalkInSeconds / 60;
-
-            return super.call((int) secondsDifference);
+            return super.call(seconds);
         }
     }
 

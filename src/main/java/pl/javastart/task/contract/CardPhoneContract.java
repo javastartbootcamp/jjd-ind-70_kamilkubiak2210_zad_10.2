@@ -1,10 +1,10 @@
-package pl.javastart.task;
+package pl.javastart.task.contract;
 
 public class CardPhoneContract implements Contract {
-    protected double balance;
-    protected final double smsCost;
-    protected final double mmsCost;
-    protected final double oneMinuteTalkCost;
+    double balance;
+    final double smsCost;
+    final double mmsCost;
+    final double oneMinuteTalkCost;
 
     public CardPhoneContract(double balance, double smsCost, double mmsCost, double oneMinuteTalkCost) {
         this.balance = balance;
@@ -40,10 +40,9 @@ public class CardPhoneContract implements Contract {
             return seconds;
 
         } else {
-            double priceDifference = priceForGivenSeconds - balance;
-            double priceLeft = priceForGivenSeconds - priceDifference;
-            double timeDifference = (priceLeft * 60 / oneMinuteTalkCost);
-            balance -= priceLeft;
+            double timeDifference = balance * 60 / oneMinuteTalkCost;
+            double price = timeDifference * 0.5 / 60.0;
+            balance -= price;
             return (int) timeDifference;
         }
     }
