@@ -35,15 +35,31 @@ public class MixPhoneContract extends CardPhoneContract {
 
     @Override
     public int call(int seconds) {
-        double amountOfTalkInSeconds = amountOfTalk * 60;
+        double amountOfTalkInSeconds = amountOfTalk * oneMinuteInSeconds;
+
         if (amountOfTalkInSeconds >= seconds) {
-            double secondsToMin = seconds / 60.0;
-            amountOfTalk -= secondsToMin;
+
+            amountOfTalk = (amountOfTalkInSeconds - seconds) / oneMinuteInSeconds;
             return seconds;
+
         } else {
-            balance += amountOfTalk * 0.5;
-            amountOfTalk -= amountOfTalkInSeconds / 60;
-            return super.call(seconds);
+            double secondsDifference = seconds - amountOfTalkInSeconds;
+            double priceForSecondsDifference = secondsDifference * oneMinuteTalkCost / oneMinuteInSeconds;
+
+            if (balance - priceForSecondsDifference >= 0) {
+
+                amountOfTalk = 0;
+                balance -= priceForSecondsDifference;
+                return (int) (secondsDifference + amountOfTalkInSeconds);
+
+            } else {
+
+                amountOfTalk = 0;
+                double balanceSecondsTalk = balance * oneMinuteInSeconds / oneMinuteTalkCost;
+                balance -= balance;
+                return (int) (amountOfTalkInSeconds + balanceSecondsTalk);
+
+            }
         }
     }
 

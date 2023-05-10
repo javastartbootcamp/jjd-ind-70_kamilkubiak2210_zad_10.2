@@ -5,6 +5,7 @@ public class CardPhoneContract implements Contract {
     final double smsCost;
     final double mmsCost;
     final double oneMinuteTalkCost;
+    final double oneMinuteInSeconds = 60.0;
 
     public CardPhoneContract(double balance, double smsCost, double mmsCost, double oneMinuteTalkCost) {
         this.balance = balance;
@@ -33,15 +34,14 @@ public class CardPhoneContract implements Contract {
 
     @Override
     public int call(int seconds) {
-        double priceForGivenSeconds = seconds * oneMinuteTalkCost / 60;
+        double priceForGivenSeconds = seconds * oneMinuteTalkCost / oneMinuteInSeconds;
 
         if (balance > priceForGivenSeconds) {
             balance -= priceForGivenSeconds;
             return seconds;
-
         } else {
-            double timeDifference = balance * 60 / oneMinuteTalkCost;
-            double price = timeDifference * 0.5 / 60.0;
+            double timeDifference = balance * oneMinuteInSeconds / oneMinuteTalkCost;
+            double price = timeDifference * oneMinuteTalkCost / oneMinuteInSeconds;
             balance -= price;
             return (int) timeDifference;
         }
